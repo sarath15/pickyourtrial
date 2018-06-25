@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Moving Block | PickYourTrial</title>
+    <style>
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        button {
+            background-color: #000;
+            color: #fff;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+        }
+
+        .inner-container {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .inner-container .col {
+            flex: 0 0 49%;
+        }
+
+        .inner-container .col button {
+            width: 200px;
+            margin: 0 0 10px 0;
+        }
+    </style>
+</head>
+
+<body>
+    <section>
+        <div class="container">
+            <div class="inner-container">
+                <div class="col">
+                    <canvas id="movingBlockArea" width="300" height="300">
+                        Browser does not support HTML5 Canvas.
+                    </canvas>
+                </div>
+                <div class="col">
+                    <button type="button" onclick="rotate('forward')"> Move Forward </button>
+                    <button type="button" onclick="rotate('backward')"> Move Backward </button>
+                </div>
+            </div>
+        </div>
+
+        <script type="text/javascript">
+            let x = 0;
+            let y = 0;
+            const width = 300;
+            const height = 300;
+            let position = 1;
+            const innerBoxRatio = 4;
+            const canvas = document.getElementById("movingBlockArea");
+            canvas.width = width;
+            canvas.height = height;
+            const context = canvas.getContext("2d");
+
+            // draw rectangle
+            function drawRectangle(x, y, w, h) {
+                context.beginPath();
+                context.rect(x, y, w, h);
+                context.closePath();
+                context.fill();
+                context.stroke();
+            }
+
+            /**
+             * Function is to rotate based on the direction
+             * @param direction - direction to be moved
+             */
+            function rotate(direction) {
+                if (direction == 'forward') {
+                    position = position == 4 ? 1 : ++position;
+                } else {
+                    position = position == 1 ? 4 : --position;
+                }
+                setPosition(position);
+                draw(); //re-draw the canvas
+            }
+
+            /**
+             * Function is to rotate based on the direction
+             * @param corner - direction to be moved
+             */
+            function setPosition(corner) {
+                switch (corner) {
+                    case 1:
+                        x = y = 0;
+                        break;
+                    case 2:
+                        x = width - width / innerBoxRatio;
+                        y = 0;
+                        break;
+                    case 3:
+                        x = width - width / innerBoxRatio;
+                        y = height - height / innerBoxRatio;
+                        break;
+                    case 4:
+                        x = 0;
+                        y = height - height / innerBoxRatio;
+                        break;
+                    default:
+                        x = y = 0;
+                        break;
+                }
+            }
+
+            /**
+             * Function is to clear and draw the new canvas
+             */
+            function draw() {
+                context.clearRect(0, 0, width, height);
+                context.fillStyle = "white";
+                context.strokeStyle = "green";
+                drawRectangle(0, 0, width, height);
+                context.fillStyle = "black";
+                drawRectangle(x, y, width / innerBoxRatio, height / innerBoxRatio);
+            }
+            draw();
+        </script>
+    </section>
+</body>
+
+</html>

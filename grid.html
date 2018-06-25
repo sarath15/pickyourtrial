@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Responsive Grid | Pickyourtrail</title>
+</head>
+
+<body>
+    <section>
+        <div class="container">
+            <div class="grid">
+                <div class="col">
+                    <div class="col-inner">
+                        <div class="item">1</div>
+                        <div class="item">2</div>
+                        <div class="item">3</div>
+                        <div class="item">4</div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="col-inner">
+                        <div class="item">1</div>
+                        <div class="item">2</div>
+                        <div class="item">3</div>
+                        <div class="item">4</div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="col-inner">
+                        <div class="item">1</div>
+                        <div class="item">2</div>
+                        <div class="item">3</div>
+                        <div class="item">4</div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="col-inner">
+                        <div class="item">1</div>
+                        <div class="item">2</div>
+                        <div class="item">3</div>
+                        <div class="item">4</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <style>
+        .grid,
+        .col-inner {
+            display: flex;
+            width: 100%;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .grid .col {
+            flex: 1;
+            border: 1px solid #000000;
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .col-inner .item {
+            flex: 1;
+            border: 1px solid #000000;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        @media only screen and (max-width: 720px) {
+            .grid .col,
+            .col-inner .item {
+                flex: 0 0 49%;
+                height: auto;
+            }
+        }
+
+        @media only screen and (max-width: 360px) {
+            .grid .col,
+            .col-inner .item {
+                flex: 0 0 100%;
+                height: auto;
+            }
+        }
+    </style>
+</body>
+
+</html>
